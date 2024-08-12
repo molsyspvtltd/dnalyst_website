@@ -859,15 +859,21 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </body>
-<!-- <div class="overlays">
+<div class="overlays">
+  <span class="close-btn">&times;</span>
   <div class="overlays-contents">
+    
     <h1>"Excitement Building Up – Get Ready to Explore!"</h1>
-    <div style="display: flex; justify-content: center; align-items: center; ">
+    <div style="display: flex; justify-content: center; align-items: center;">
       <img src="./assets/images/Dnalyst.png" height="500" width="500" style="max-width: 100%; height: auto;">
     </div>
-    
   </div>
-</div> -->
+</div>
+<script>
+  document.querySelector('.close-btn').addEventListener('click', function() {
+    document.querySelector('.overlays').style.display = 'none';
+  });
+</script>
 
 
 </html>
