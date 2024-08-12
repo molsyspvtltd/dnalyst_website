@@ -1521,6 +1521,15 @@ body {
   white-space: nowrap; /* Prevent text wrapping */
   animation: moveText 9s linear infinite; /* Apply the animation */
 }
+
+/* Close button style */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  font-size: 8rem;
+  color: rgb(249, 241, 241);
+  cursor: pointer;
+}
 /* Animation for moving the text from left to right */
 @keyframes moveText {
   0% {
