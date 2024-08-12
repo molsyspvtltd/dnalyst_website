@@ -1497,6 +1497,8 @@ body {
 
 }
 
+
+
 /* Full-screen transparent overlay */
 .overlays {
   position: fixed;
@@ -1514,6 +1516,7 @@ body {
 
 /* Centered content inside the overlay */
 .overlays-contents {
+  position: relative;
   text-align: center;
   color: white;
   font-size: 2rem;
@@ -1530,6 +1533,7 @@ body {
   color: rgb(249, 241, 241);
   cursor: pointer;
 }
+
 /* Animation for moving the text from left to right */
 @keyframes moveText {
   0% {
