@@ -1543,3 +1543,33 @@ body {
     transform: translateX(100%); /* End at the right outside of the viewport */
   }
 }
+
+.floating-button {
+  position: fixed; /* Makes the button stay in the same position while scrolling */
+  bottom: 70px; /* Space from the bottom of the viewport */
+  right: 5px; /* Space from the right of the viewport */
+  z-index: 1000; /* Ensures the button stays on top of other content */
+}
+
+.floating-button a {
+  display: inline-block; /* Ensures the anchor is treated as a block element */
+}
+
+@media (max-width: 600px) {
+  .floating-button a {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    padding: 8px 16px; /* Adjust padding for smaller screens */
+  }
+
+  .floating-button {
+    bottom: 15px; /* Adjust position for smaller screens */
+    right: 15px; /* Adjust position for smaller screens */
+  }
+}
+
+@media (max-width: 360px) {
+  .floating-button a {
+    font-size: 12px; /* Further adjust font size for mobile screens */
+    padding: 6px 12px; /* Further adjust padding for mobile screens */
+  }
+}
