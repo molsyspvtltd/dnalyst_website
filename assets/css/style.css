@@ -1573,3 +1573,129 @@ body {
     padding: 6px 12px; /* Further adjust padding for mobile screens */
   }
 }
+
+/* General Styles */
+body {
+  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Contact Section Styles */
+.custom-contact {
+  padding: 130px 0;
+  background: rgba(255, 255, 255, 0.8); /* White background with slight transparency */
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 60px;
+  
+}
+
+.custom-heading h2 {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-heading h2 span {
+  color:  hsl(25, 100%, 40%);
+}
+
+.custom-heading p {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #999999;
+  margin: 20px 0 60px;
+  padding: 0;
+}
+
+.custom-title h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.custom-title p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #999;
+  line-height: 1.6;
+  margin: 0 0 40px;
+}
+
+.custom-content .custom-info {
+  margin-top: 30px;
+}
+
+.custom-content .custom-info i {
+  font-size: 30px;
+  color: #02434b;
+  margin-right: 20px;
+}
+
+.custom-content .custom-info h4 {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.custom-content .custom-info h4 span {
+  font-size: 13px;
+  font-weight: 300;
+  color: #999999;
+}
+
+/* Form Styles */
+.form-control {
+  padding: 18px; /* Increase padding for a bigger look */
+  font-size: 16px; /* Increase font size */
+  margin-bottom: 40px;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.form-control:focus {
+  border-color: hsl(25, 100%, 40%); /* Change border color on focus */
+}
+
+
+
+.btn1 {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  width: 50px;
+  background: blue; /* Change to blue */
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.btn1:hover {
+  background: #e79458; /* Darker navy on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .custom-contact {
+      padding: 50px 10px; /* Reduce padding for smaller screens */
+  }
+
+  .custom-heading h2 {
+      font-size: 24px; /* Smaller heading font size */
+  }
+
+  .custom-title h3 {
+      font-size: 16px; /* Smaller title font size */
+  }
+
+  .form-control {
+      padding: 15px; /* Adjust padding for inputs */
+      font-size: 15px; /* Adjust font size for smaller screens */
+  }
+}
+
