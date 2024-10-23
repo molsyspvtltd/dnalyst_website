@@ -300,6 +300,7 @@
             .then(function(response) {
                 alert('Form submitted successfully!');
                 console.log('Success!', response.status, response.text);
+                document.getElementById('contactForm').reset();
             }, function(error) {
                 alert('Failed to send form. Please try again.');
                 console.error('Failed', error);
