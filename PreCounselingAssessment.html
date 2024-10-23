@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dnalyst - Decode your Health</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg"  type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap"
+    rel="stylesheet">
+    <style>
+        .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.formdropdown {
+    font-size: 16px; /* Increased font size for better readability */
+    margin-bottom: 10px; /* Spacing between label and dropdown */
+}
+
+.dropdown-toggle {
+    padding: 12px 20px; /* Padding for button */
+    background: #ff9100; /* Button background */
+    color: white; /* Button text color */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px; /* Font size for button */
+    transition: background 0.3s; /* Smooth transition */
+}
+
+.dropdown-toggle:hover {
+    background: #e68a00; /* Darker on hover */
+}
+
+.dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: white; /* Background color of dropdown */
+    min-width: 200px; /* Increased width */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.dropdown-content label {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Align items vertically centered */
+    margin-bottom: 8px; /* Space between items */
+    font-size: 18px; /* Font size for labels */
+    width: 100%; /* Make label take full width */
+}
+
+.dropdown-content input {
+    margin-right: 10px; /* Space between checkbox and label */
+    transform: scale(1.2); /* Make checkboxes a bit larger */
+    flex-shrink: 0; /* Prevent checkbox from shrinking */
+    width: 20px; /* Set a fixed width for the checkbox */
+}
+
+/* Show the dropdown content when the button is clicked */
+.dropdown-content.show {
+    display: block; /* Show the dropdown */
+}
+
+    </style>
+
+    
+</head>
+
+<body >
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="./index.html" class="logo">
+        <img src="./assets/images/Dnalyst.png" alt="Lifestyle Logo" class="logo-img">
+    </a>
+    </div>
+    
+  </header>
+
+  
+
+
+
+    <div>
+    
+    <section class="custom-contact" id="contact">
+        <div class="container">
+            <!-- First Row: Centered Heading -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="custom-heading text-center">
+                        <h2>Thanks for visiting dnalyst Stall
+                            <span> - Technovanza 2024, Mangalore</span>
+                        </h2>
+                        <p>We appreciate your interest. Kindly fill out this form for further inquiries.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Second Row: Contact Details and Form -->
+            <div class="row">
+                <!-- First Column: Contact Details -->
+                <div class="col-md-5">
+                    <div class="custom-title">
+                        <h3>Contact Details</h3>
+                        <p>Feel free to get in touch with us through the contact details below:</p>
+                    </div>
+                    <div class="custom-content">
+                        <!-- Info-1 -->
+                        <div class="custom-info">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4 class="d-inline-block">PHONE :
+                                <br>
+                                <span>080-69328714</span>
+                            </h4>
+                        </div>
+                        <!-- Info-2 -->
+                        <div class="custom-info">
+                            <i class="far fa-envelope"></i>
+                            <h4 class="d-inline-block">EMAIL :
+                                <br>
+                                <span>wellness@molsys.in</span>
+                            </h4>
+                        </div>
+                        <!-- Info-3 -->
+                        <div class="custom-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h4 class="d-inline-block">ADDRESS :
+                                <br>
+                                <span>Molsys Pvt Limited, <br>
+                                      Yenepoya Technology Center,<br>
+                                      Derlakkate, Mangalore<br>
+                                      Karnataka-575018</span>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Second Column: Inquiry Form -->
+                <div class="col-md-7">
+                    <form id="contactForm">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="lastName" placeholder="Last Name" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="email" class="form-control" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" name="location" placeholder="Location" required>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" name="age" placeholder="Age" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <select class="form-control" name="gender" required>
+                                    <option value="" disabled selected>Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+    
+                        <!-- Interested Products -->
+                        <div class="form-group">
+                            <label class="formdropdown" for="productsDropdown">Select Interested Products:</label>
+                            <div class="dropdown">
+                                <button class="dropdown-toggle" onclick="toggleDropdown()">Select Products</button>
+                                <div class="dropdown-content" id="dropdownContent">
+                                    <label><input type="checkbox" name="products" value="slimKr" onclick="keepDropdownOpen()"> slimKr</label>
+                                    <label><input type="checkbox" name="products" value="fitKr" onclick="keepDropdownOpen()"> fitKr</label>
+                                    <label><input type="checkbox" name="products" value="fitKrPro" onclick="keepDropdownOpen()"> fitKrPro</label>
+                                    <label><input type="checkbox" name="products" value="kinKr" onclick="keepDropdownOpen()"> kinKr</label>
+                                    <label><input type="checkbox" name="products" value="herKr" onclick="keepDropdownOpen()"> herKr</label>
+                                    <label><input type="checkbox" name="products" value="gutKr" onclick="keepDropdownOpen()"> gutKr</label>
+                                    <label><input type="checkbox" name="products" value="gutKrPro" onclick="keepDropdownOpen()"> gutKrPro</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+
+
+                        
+    
+                        <button class="btn1 btn-block" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+</div>
+
+
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js" defer></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+ 
+  
+  <script src="script.js"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+     (function(){
+        emailjs.init("MHuXywcK2nvKGX8KQ"); // Replace with your EmailJS Public Key
+     })();
+  </script>
+
+
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the default form submission behavior
+
+        // Get form data
+        const formData = {
+            firstName: document.querySelector('input[name="firstName"]').value,
+            lastName: document.querySelector('input[name="lastName"]').value,
+            phone: document.querySelector('input[name="phone"]').value,
+            email: document.querySelector('input[name="email"]').value,
+            location: document.querySelector('input[name="location"]').value,
+            age: document.querySelector('input[name="age"]').value,
+            gender: document.querySelector('select[name="gender"]').value,
+            products: Array.from(document.querySelectorAll('input[name="products"]:checked'))
+                           .map(checkbox => checkbox.value)
+        };
+
+        // Check if at least one product is selected
+        if (formData.products.length === 0) {
+            alert('Please select at least one product.');
+            return; // Stop the form submission
+        }
+
+        // Send the email using EmailJS
+        emailjs.send('service_e6ax5mf', 'template_5ej6blf', formData)
+            .then(function(response) {
+                alert('Form submitted successfully!');
+                console.log('Success!', response.status, response.text);
+            }, function(error) {
+                alert('Failed to send form. Please try again.');
+                console.error('Failed', error);
+            });
+    });
+</script>
+
+
+
+  
+
+</body>
+
+
+</div>
+<script>
+  document.querySelector('.close-btn').addEventListener('click', function() {
+    document.querySelector('.overlays').style.display = 'none';
+  });
+</script>
+
+</html>
