@@ -196,6 +196,9 @@
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" name="location" placeholder="Location" required>
                             </div>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" name="coupon_code" placeholder="Coupon Code" required>
+                            </div>
                         </div>
     
                         <div class="row">
@@ -300,6 +303,7 @@
             phone: document.querySelector('input[name="phone"]').value,
             email: document.querySelector('input[name="email"]').value,
             location: document.querySelector('input[name="location"]').value,
+            coupon_code: document.querySelector('input[name="coupon_code"]').value,
             age: document.querySelector('input[name="age"]').value,
             gender: document.querySelector('select[name="gender"]').value,
             products: Array.from(document.querySelectorAll('input[name="products"]:checked'))
