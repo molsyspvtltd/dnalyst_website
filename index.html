@@ -849,11 +849,9 @@
     <div class="footer-bottom">
       <div class="container">
 
-        <p class="copyright">
-          &copy; 2024 dnalyst
-        </p>
-
-      
+       <p class="copyright">
+    &copy; <span id="year"></span> dnalyst
+</p>      
 
       </div>
     </div>
@@ -911,6 +909,10 @@
   document.querySelector('.close-btn').addEventListener('click', function() {
     document.querySelector('.overlays').style.display = 'none';
   });
+</script>
+
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 
