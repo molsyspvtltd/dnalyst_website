@@ -1,0 +1,10 @@
+# Ignore node_modules
+dnalyst_new_website/node_modules/
+
+# Ignore build folders if present
+dnalyst_new_website/build/
+dnalyst_new_website/dist/
+
+# Ignore macOS system files
+.DS_Store
+
