@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - dnalyst</title>
+    <style>
+        .careers-container {
+            max-width: 1200px;
+            margin: 100px auto 0;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header.header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .job-opening {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .job-title {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .job-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .job-details {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .job-details li {
+            margin-bottom: 8px;
+        }
+        .apply-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .apply-btn:hover {
+            background: #2980b9;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .application-note {
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+            color: #555;
+        }
+        .location {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+    </style>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header" data-header>
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="assets/images/dnalyst-nobg.png" alt="dnalyst Logo" class="logo-img">
+            </a>
+            
+            <nav class="navbar" data-navbar>
+                <button class="nav-toggle-btn" aria-label="close menu" data-nav-toggler>
+                    <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+                </button>
+                <ul class="navbar-list">
+                    <li class="navbar-item">
+                        <a href="index.html" class="navbar-link" data-nav-link>About Us</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="index.html" class="navbar-link" data-nav-link>Products</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="index.html" class="navbar-link" data-nav-link>Contact Us</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/PreCounselingAssessment.html" class="navbar-link" data-nav-link>Enquiry Form</a>
+                    </li>
+                </ul>
+            </nav>
+            <button class="nav-toggle-btn" aria-label="open manu" data-nav-toggler>
+                <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+            </button>
+            <div class="overlay" data-nav-toggler data-overlay></div>
+        </div>
+    </header>
+    
+    <div class="careers-container mt-5">
+        <div class="page-header">
+            <h1>Join Our Team</h1>
+            <p>We're looking for talented individuals to join our growing team.</p>
+        </div>
+        
+        <div class="application-note">
+            <p>To apply, please email your resume to <a href="mailto:it@molsys.in">it@molsys.in</a> or use the Apply Now button below.</p>
+        </div>
+        
+        <div class="job-opening">
+            <h2 class="job-title">Jr. Developer AI/ML</h2>
+            <div class="job-description">
+                <p>We are seeking a Junior AI/ML Developer to join our team and help develop cutting-edge healthcare solutions.</p>
+                
+                
+                <h3>Requirements:</h3>
+                <ul class="job-details">
+                    <li>B.E/B.Tech in AI/ML or Computer Science (2022/2023 graduates preferred)</li>
+                    <li>0-1 years of experience in AI/ML development</li>
+                    <li>Hands-on experience with training reinforcement learning models</li>
+                    <li>Familiarity with LLMs and Transformer architectures</li>
+                    <li>Strong programming skills in Python</li>
+                    <li>Experience with ML frameworks (TensorFlow/PyTorch)</li>
+                </ul>
+                
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i> Working Location: Mangalore, Karnataka
+                </div>
+            </div>
+            <button class="apply-btn" onclick="openEmailClient('Jr. Developer AI/ML')">Apply Now</button>
+        </div>
+        
+        <div class="job-opening">
+            <h2 class="job-title">Sales Executive</h2>
+            <div class="job-description">
+                <p>We're looking for an experienced Sales Executive to promote our biotech and healthcare solutions.</p>
+            
+                
+                <h3>Requirements:</h3>
+                <ul class="job-details">
+                    <li>2-4 years of sales experience in biotech/healthcare sector</li>
+                    <li>Good knowledge of genomics and healthcare IT solutions</li>
+                    <li>Excellent communication and presentation skills</li>
+                    <li>Proficiency in English, Hindi, Kannada, and Malayalam</li>
+                    <li>Experience with CRM systems preferred</li>
+                    <li>Strong negotiation and closing skills</li>
+                </ul>
+                
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i> Working Location: Mangalore, Karnataka
+                </div>
+            </div>
+            <button class="apply-btn" onclick="openEmailClient('Sales Executive')">Apply Now</button>
+        </div>
+    </div>
+
+    <script>
+        function openEmailClient(position) {
+            const subject = encodeURIComponent(`Application for ${position} Position`);
+            const body = encodeURIComponent(
+`Dear Hiring Manager,
+
+I am interested in applying for the ${position} position at dnalyst.
+
+Please find my details below:
+
+Full Name: 
+Email: 
+Phone: 
+Years of Experience: 
+Current Location: 
+Notice Period: 
+
+I have attached my resume for your consideration.
+
+Best regards,
+[Your Name]`
+            );
+            
+            window.location.href = `mailto:it@molsys.in?subject=${subject}&body=${body}`;
+        }
+    </script>
+
+     </footer>
+  <footer class="footer" style="
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 40px 0 0;
+    font-family: Arial, sans-serif;
+    width: 100%;
+">
+  <div class="container" style="
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+  ">
+   
+
+    <!-- Main Footer Content -->
+    <div class="footer-grid" style="
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    ">
+      <!-- Subscribe Column -->
+      <div class="footer-column" style="margin-bottom: 30px;">
+        <h3 class="footer-title" style="
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+            position: relative;
+            padding-bottom: 10px;
+        ">
+          Mail to Connect Us
+          <span style="
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              width: 50px;
+              height: 2px;
+              background: #3498db;
+          "></span>
+        </h3>
+        <form class="footer-form" style="
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        ">
+          <input type="email" placeholder="Enter email" style="
+              padding: 12px 15px;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+              font-size: 16px;
+              width: 100%;
+              box-sizing: border-box;
+          ">
+          <button type="submit" style="
+              background: #3498db;
+              color: white;
+              border: none;
+              padding: 12px 20px;
+              border-radius: 4px;
+              cursor: pointer;
+              font-size: 16px;
+              transition: background 0.3s;
+              width: 100%;
+          ">
+            Subscribe Now
+          </button>
+        </form>
+        <p style="
+            color: #bdc3c7;
+            font-size: 14px;
+            margin-top: 15px;
+            line-height: 1.6;
+        ">Decode Your Health</p>
+      </div>
+      
+      <!-- Quick Links Column -->
+      <div class="footer-column" style="margin-bottom: 30px;">
+        <h3 class="footer-title" style="
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+            position: relative;
+            padding-bottom: 10px;
+        ">
+          Quick Links
+          <span style="
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              width: 50px;
+              height: 2px;
+              background: #3498db;
+          "></span>
+        </h3>
+        <ul style="
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        ">
+          <li style="margin-bottom: 12px;">
+            <a href="#" style="
+                color: #bdc3c7;
+                text-decoration: none;
+                transition: all 0.3s;
+                display: block;
+                padding: 5px 0;
+            ">Privacy Policy</a>
+          </li>
+          <li style="margin-bottom: 12px;">
+            <a href="#" style="
+                color: #bdc3c7;
+                text-decoration: none;
+                transition: all 0.3s;
+                display: block;
+                padding: 5px 0;
+            ">Terms & Conditions</a>
+          </li>
+          <li style="margin-bottom: 12px;">
+            <a href="#" style="
+                color: #bdc3c7;
+                text-decoration: none;
+                transition: all 0.3s;
+                display: block;
+                padding: 5px 0;
+            ">Customer Support</a>
+          </li>
+          <li style="margin-bottom: 12px;">
+            <a href="careers.html" style="
+                color: #bdc3c7;
+                text-decoration: none;
+                transition: all 0.3s;
+                display: block;
+                padding: 5px 0;
+            ">Careers</a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Hours & Contact Column -->
+      <div class="footer-column" style="margin-bottom: 30px;">
+        <div style="margin-bottom: 30px;">
+          <h3 class="footer-title" style="
+              font-size: 18px;
+              font-weight: 600;
+              margin-bottom: 20px;
+              color: #fff;
+              position: relative;
+              padding-bottom: 10px;
+          ">
+            Opening Hours
+            <span style="
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 50px;
+                height: 2px;
+                background: #3498db;
+            "></span>
+          </h3>
+          <p style="color: #bdc3c7; margin: 0;">Open 24 hours</p>
+        </div>
+        
+        <div>
+          <h3 class="footer-title" style="
+              font-size: 18px;
+              font-weight: 600;
+              margin-bottom: 20px;
+              color: #fff;
+              position: relative;
+              padding-bottom: 10px;
+          ">
+            Contact Us
+            <span style="
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 50px;
+                height: 2px;
+                background: #3498db;
+            "></span>
+          </h3>
+          <ul style="
+              list-style: none;
+              padding: 0;
+              margin: 0;
+          ">
+            <li style="margin-bottom: 12px;">
+              <a href="tel:08069328714" style="
+                  color: #bdc3c7;
+                  text-decoration: none;
+                  transition: all 0.3s;
+                  display: block;
+                  padding: 5px 0;
+              ">080-69328714</a>
+            </li>
+            <li style="margin-bottom: 12px;">
+              <a href="mailto:wellness@molsys.in" style="
+                  color: #bdc3c7;
+                  text-decoration: none;
+                  transition: all 0.3s;
+                  display: block;
+                  padding: 5px 0;
+              ">wellness@molsys.in</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<div class="footer-bottom" style="
+    background: #1a252f;
+    padding: 20px 0;
+    text-align: center;
+">
+  <div class="container" style="
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+  ">
+    <p class="copyright" style="
+        color: #bdc3c7;
+        font-size: 14px;
+        margin: 0;
+        display: inline-block;
+    ">
+      &copy; <span id="year" style="display: inline;"></span> dnalyst. All rights reserved.
+    </p>
+  </div>
+</div>
+
+<script>
+  // Automatically update the year
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+
+  <script>
+    // Set current year in copyright
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Responsive adjustments
+    function adjustFooterLayout() {
+      const footerGrid = document.querySelector('.footer-grid');
+      if (window.innerWidth <= 768) {
+        footerGrid.style.gridTemplateColumns = '1fr';
+      } else {
+        footerGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+      }
+    }
+    
+    // Run on load and resize
+    window.addEventListener('load', adjustFooterLayout);
+    window.addEventListener('resize', adjustFooterLayout);
+  </script>
+</footer>
+</body>
+</html>
