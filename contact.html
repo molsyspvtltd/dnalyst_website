@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dnalyst - Decode your Health</title>
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #4a6fa5;
+      --secondary-color: #ff7e33;
+      --accent-color: #166088;
+      --light-bg: #f8f9fa;
+      --dark-text: #2d3748;
+      --medium-text: #4a5568;
+      --light-text: #718096;
+      --white: #ffffff;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark-text);
+      background-color: var(--light-bg);
+      line-height: 1.6;
+    }
+    
+    .header {
+      background-color: var(--white);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+      padding: 20px 0;
+      position: relative;
+      z-index: 100;
+    }
+    
+    .logo-img {
+      height: 45px;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
+    
+    .contact-section {
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      background-color: rgba(74, 111, 165, 0.03);
+      z-index: -1;
+      border-radius: 30% 0 0 30%;
+      transform: skewX(-15deg);
+    }
+    
+    .section-heading {
+      margin-bottom: 50px;
+      text-align: center;
+    }
+    
+    .section-heading h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: var(--dark-text);
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-heading h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--secondary-color);
+      border-radius: 2px;
+    }
+    
+    .section-heading .subtitle {
+      color: var(--medium-text);
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .contact-info-card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      box-shadow: var(--box-shadow);
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+    
+    .contact-info-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .contact-info-title {
+      font-weight: 600;
+      color: var(--dark-text);
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .contact-info-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary-color);
+      border-radius: 3px;
+    }
+    
+    .contact-info p.intro {
+      color: var(--medium-text);
+      margin-bottom: 30px;
+    }
+    
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    
+    .info-icon {
+      color: var(--secondary-color);
+      font-size: 1.2rem;
+      margin-right: 15px;
+      margin-top: 3px;
+      min-width: 20px;
+    }
+    
+    .info-content h4 {
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--dark-text);
+      font-size: 1.1rem;
+    }
+    
+    .info-content span, .info-content a {
+      color: var(--medium-text);
+      font-weight: 400;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+    
+    .info-content a:hover {
+      color: var(--secondary-color);
+      text-decoration: none;
+    }
+    
+    /* Form Styling */
+    .contact-form-card {
+      background: var(--white);
+      padding: 40px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contact-form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+    }
+    
+    .offer-banner {
+      background-color: rgba(255, 126, 51, 0.08);
+      border-left: 4px solid var(--secondary-color);
+      padding: 25px;
+      margin-bottom: 30px;
+      border-radius: var(--border-radius);
+    }
+    
+    .offer-banner h4 {
+      font-weight: 600;
+      color: var(--dark-text);
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .offer-banner h4::before {
+      content: '\f02b';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      color: var(--secondary-color);
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .offer-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    }
+    
+    .offer-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .offer-icon {
+      color: var(--secondary-color);
+      margin-right: 15px;
+      font-size: 1.1rem;
+      min-width: 20px;
+      text-align: center;
+    }
+    
+    .offer-text {
+      color: var(--medium-text);
+    }
+    
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-control {
+      height: 50px;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--border-radius);
+      padding: 12px 15px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.2rem rgba(74, 111, 165, 0.15);
+    }
+    
+    select.form-control {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%234a5568' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 16px 12px;
+    }
+    
+    /* Dropdown Styling */
+    .dropdown {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    
+    .dropdown-toggle {
+      padding: 14px 20px;
+      background: var(--primary-color);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      border-radius: var(--border-radius);
+      font-size: 15px;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-align: left;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .dropdown-toggle:hover {
+      background: #3a5a8f;
+    }
+    
+    .dropdown-toggle:after {
+      content: '\f078';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      border: none;
+      margin-left: 10px;
+      transition: transform 0.3s ease;
+    }
+    
+    .dropdown-toggle.show:after {
+      transform: rotate(180deg);
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: var(--white);
+      width: 100%;
+      box-shadow: var(--box-shadow);
+      z-index: 10;
+      padding: 15px;
+      border-radius: var(--border-radius);
+      border: 1px solid #edf2f7;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
+    .dropdown-content.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 15px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    
+    .dropdown-item:hover {
+      background: #f7fafc;
+    }
+    
+    .dropdown-item input {
+      margin-right: 12px;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary-color);
+      cursor: pointer;
+    }
+    
+    /* Button Styling */
+    .submit-btn {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      border: none;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(74, 111, 165, 0.3);
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(74, 111, 165, 0.4);
+      color: var(--white);
+    }
+    
+    .submit-btn i {
+      margin-right: 10px;
+    }
+    
+    /* Terms Checkbox */
+    .terms-check {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 25px;
+    }
+    
+    .terms-check input {
+      margin-right: 12px;
+      margin-top: 3px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary-color);
+      cursor: pointer;
+    }
+    
+    .terms-check label {
+      color: var(--medium-text);
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+    
+    .terms-check a {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+    
+    .terms-check a:hover {
+      color: var(--secondary-color);
+    }
+    
+    /* Coupon Code Field */
+    .coupon-field {
+      position: relative;
+    }
+    
+    .coupon-field .form-control {
+      padding-right: 40px;
+      background-color: #f8f9fa;
+      font-weight: 500;
+      color: var(--primary-color);
+    }
+    
+    .coupon-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--secondary-color);
+      font-size: 1.2rem;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .contact-section::before {
+        width: 100%;
+        border-radius: 0;
+        transform: none;
+        opacity: 0.05;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .section-heading h2 {
+        font-size: 2rem;
+      }
+      
+      .section-heading .subtitle {
+        font-size: 1rem;
+      }
+      
+      .contact-form-card {
+        padding: 30px 20px;
+      }
+      
+      .contact-info-card {
+        margin-bottom: 30px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .contact-section {
+        padding: 60px 0;
+      }
+      
+      .section-heading h2 {
+        font-size: 1.8rem;
+      }
+      
+      .offer-banner {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="./index.html" class="logo">
+        <img src="./assets/images/Dnalyst.png" alt="dnalyst Logo" class="logo-img">
+      </a>
+    </div>
+  </header>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Start Your Journey with dnalyst</h2>
+        <p class="subtitle">We appreciate your interest. Please fill out this form and our team will contact you shortly.</p>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-5 mb-4 mb-lg-0">
+          <div class="contact-info-card">
+            <h3 class="contact-info-title">Contact Details</h3>
+            <p class="intro">Feel free to reach out to us with any questions or inquiries.</p>
+            
+            <div class="info-item">
+              <i class="fas fa-phone-alt info-icon"></i>
+              <div class="info-content">
+                <h4>Phone</h4>
+                <span>080-69328714</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <i class="fas fa-envelope info-icon"></i>
+              <div class="info-content">
+                <h4>Email</h4>
+                <span>wellness@molsys.in</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt info-icon"></i>
+              <div class="info-content">
+                <h4>Address</h4>
+                <span>
+                  Yenepoya Technology Incubator<br>
+                  Yenepoya (deemed-to-be) University<br>
+                  Deralakatte, Ullal, DK Pin: 575020
+                </span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <i class="fab fa-youtube info-icon"></i>
+              <div class="info-content">
+                <h4>YouTube</h4>
+                <a href="https://youtube.com/@dnalyst?si=mD4EbzupidRQwyCD" target="_blank">
+                  Subscribe to our channel
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-lg-7">
+          <div class="offer-banner">
+            <h4>Your Exclusive Offers</h4>
+            <div class="offer-item">
+              <i class="fas fa-percentage offer-icon"></i>
+              <span class="offer-text">25% Discount for Early Birds</span>
+            </div>
+            <div class="offer-item">
+              <i class="fas fa-heartbeat offer-icon"></i>
+              <span class="offer-text">One Free Diet Counseling Session</span>
+            </div>
+          </div>
+          
+          <div class="contact-form-card">
+            <form id="contactForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="lastName" placeholder="Last Name" required>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" name="location" placeholder="Location" required>
+              </div>
+              
+              <div class="form-group">
+                <div class="coupon-field">
+                  <input type="text" class="form-control" name="coupon_code" id="couponCode" placeholder="Coupon Code" value="ROUNDTABLE11062025" readonly>
+                  <i class="fas fa-tag coupon-icon"></i>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="number" class="form-control" name="age" placeholder="Age" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" name="gender" required>
+                      <option value="" disabled selected>Select Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="mb-2" style="font-weight: 500; color: var(--dark-text);">Select Products of Interest</label>
+                <div class="dropdown">
+                  <button type="button" class="dropdown-toggle" id="productsDropdown">
+                    <i class="fas fa-dna" style="margin-right: 8px;"></i> Choose Products
+                  </button>
+                  <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-item">
+                      <input type="checkbox" name="products" value="slimKr" id="slimKr">
+                      <label for="slimKr">slimKr</label>
+                    </div>
+                    <div class="dropdown-item">
+                      <input type="checkbox" name="products" value="fitKr" id="fitKr">
+                      <label for="fitKr">fitKr</label>
+                    </div>
+                    <div class="dropdown-item">
+                      <input type="checkbox" name="products" value="fitKrPro" id="fitKrPro">
+                      <label for="fitKrPro">fitKrPro</label>
+                    </div>
+                    <div class="dropdown-item">
+                      <input type="checkbox" name="products" value="kinKr" id="kinKr">
+                      <label for="kinKr">kinKr</label>
+                    </div>
+                    <div class="dropdown-item">
+                      <input type="checkbox" name="products" value="herKr" id="herKr">
+                      <label for="herKr">herKr</label>
+                    </div>
+                    <div class="dropdown-item">
+                      <input type="checkbox" name="products" value="gutKr" id="gutKr">
+                      <label for="gutKr">gutKr</label>
+                    </div>
+                    <div class="dropdown-item">
+                      <input type="checkbox" name="products" value="gutKrPro" id="gutKrPro">
+                      <label for="gutKrPro">gutKrPro</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="terms-check">
+                <input type="checkbox" id="termsCheckbox" name="terms" required>
+                <label for="termsCheckbox">
+                  I agree that dnalyst representatives can contact me using the details provided above.
+                </label>
+              </div>
+              
+              <button class="submit-btn" type="submit">
+                <i class="fas fa-paper-plane"></i> Submit Request
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Get coupon code from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const couponCode = urlParams.get('coupon');
+    if (couponCode) {
+      document.getElementById('couponCode').value = couponCode;
+    }
+    
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const formData = {
+        firstName: document.querySelector('input[name="firstName"]').value,
+        lastName: document.querySelector('input[name="lastName"]').value,
+        phone: document.querySelector('input[name="phone"]').value,
+        email: document.querySelector('input[name="email"]').value,
+        location: document.querySelector('input[name="location"]').value,
+        coupon_code: document.querySelector('input[name="coupon_code"]').value,
+        age: document.querySelector('input[name="age"]').value,
+        gender: document.querySelector('select[name="gender"]').value,
+        products: Array.from(document.querySelectorAll('input[name="products"]:checked'))
+                       .map(checkbox => checkbox.value),
+        offers: ['25% Discount for Early Birds', 'One Free Diet Counseling Session']
+      };
+
+      if (formData.products.length === 0) {
+        alert('Please select at least one product.');
+        return;
+      }
+
+      // Here you would typically send the form data to your server
+      console.log('Form submitted:', formData);
+      
+      // Show success message
+      alert('Thank you for your interest! Our wellness team will contact you within 24 hours.');
+      
+      // Reset form
+      this.reset();
+      document.getElementById('couponCode').value = couponCode || 'ROUNDTABLE11062025';
+    });
+    
+    // Dropdown functionality
+    document.getElementById('productsDropdown').addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      document.getElementById('dropdownContent').classList.toggle('show');
+      this.classList.toggle('show');
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.dropdown')) {
+        const dropdown = document.getElementById('dropdownContent');
+        if (dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+          document.getElementById('productsDropdown').classList.remove('show');
+        }
+      }
+    });
+    
+    // Prevent dropdown from closing when clicking inside
+    document.getElementById('dropdownContent').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  </script>
+</body>
+</html>
