@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Special Gift</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --dark: #292f36;
+            --light: #f7fff7;
+            --accent: #ffbe0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .gift-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .gift-card {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 20px;
+            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            height: 400px;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 2;
+        }
+        
+        .gift-card.opened {
+            transform: translateY(-20px);
+            box-shadow: 0 40px 60px -30px rgba(0,0,0,0.4);
+        }
+        
+        .gift-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .reveal-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.3);
+            transform: translateY(100%) scale(0.9);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .reveal-card.show {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            z-index: 3;
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+        }
+        
+        .ribbon::before,
+        .ribbon::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            transform: rotate(45deg);
+            top: 30px;
+            right: -70px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .ribbon::after {
+            background: var(--accent);
+            transform: rotate(-45deg);
+            top: 70px;
+            right: -30px;
+        }
+        
+        .gift-icon {
+            font-size: 80px;
+            color: white;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        .open-btn, .claim-btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-top: 15px;
+        }
+        
+        .open-btn:hover, .claim-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+        }
+        
+        .claim-btn {
+            background: var(--primary);
+            color: white;
+            margin-top: 30px;
+            align-self: center;
+        }
+        
+        .offer-list {
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .offer-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .offer-icon {
+            font-size: 30px;
+            margin-right: 15px;
+            color: var(--primary);
+        }
+        
+        .offer-item:nth-child(2) .offer-icon {
+            color: var(--secondary);
+        }
+        
+        .offer-text h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .offer-text p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            opacity: 0;
+            z-index: 10;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-30px);}
+            60% {transform: translateY(-15px);}
+        }
+        
+        @keyframes float {
+            0% {transform: translate(0, 0) rotate(0deg); opacity: 1;}
+            100% {transform: translate(var(--randomX), var(--randomY)) rotate(360deg); opacity: 0;}
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: white;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .congrats-heading {
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .congrats-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="gift-container">
+        <div class="gift-card" id="giftCard">
+            <div class="ribbon"></div>
+            <div class="gift-content">
+                <div class="gift-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <div class="title">Your Special Gift!</div>
+                <div class="subtitle">Click below to reveal your surprise</div>
+                <button class="open-btn" id="openBtn">Open Your Gift</button>
+            </div>
+        </div>
+        
+        <div class="reveal-card" id="revealCard">
+            <h2 class="congrats-heading">Congratulations!</h2>
+            <p class="congrats-subtitle">Here are your special offers</p>
+            
+            <div class="offer-list">
+                <div class="offer-item">
+                    <div class="offer-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="offer-text">
+                        <h3>25% Discount for Early Birds</h3>
+                        <p>Limited time offer for our first customers</p>
+                    </div>
+                </div>
+                
+                <div class="offer-item">
+                    <div class="offer-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="offer-text">
+                        <h3>One Free Diet Counseling</h3>
+                        <p>Personalized nutrition advice from our experts</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="claim-btn" id="claimBtn">Claim Your Offers</button>
+        </div>
+    </div>
+
+    <script>
+        const giftCard = document.getElementById('giftCard');
+        const revealCard = document.getElementById('revealCard');
+        const openBtn = document.getElementById('openBtn');
+        const claimBtn = document.getElementById('claimBtn');
+        
+        openBtn.addEventListener('click', () => {
+            giftCard.classList.add('opened');
+            revealCard.classList.add('show');
+            createConfetti();
+        });
+        
+        claimBtn.addEventListener('click', () => {
+            // Redirect to contact page with coupon code
+            window.location.href = 'contact.html?coupon=ROUNDTABLE11062025';
+        });
+        
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#ffbe0b', '#a5ffd6', '#b388ff', '#ff82a9', '#8a2be2', '#7fffd4'];
+            
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random position at top of screen
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -20 + 'px';
+                
+                // Random color
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random size
+                const size = Math.random() * 10 + 5;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                
+                // Random shape
+                if (Math.random() > 0.5) {
+                    confetti.style.borderRadius = '50%';
+                }
+                
+                // Random rotation
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                document.body.appendChild(confetti);
+                
+                // Random animation parameters
+                const randomX = (Math.random() - 0.5) * 1000;
+                const randomY = Math.random() * 1000 + 500;
+                const duration = Math.random() * 3 + 2;
+                
+                // Set CSS variables for animation
+                confetti.style.setProperty('--randomX', `${randomX}px`);
+                confetti.style.setProperty('--randomY', `${randomY}px`);
+                
+                // Start animation
+                confetti.style.animation = `float ${duration}s ease-in forwards`;
+                confetti.style.opacity = 1;
+                
+                // Remove after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, duration * 1000);
+            }
+        }
+    </script>
+</body>
+</html>
