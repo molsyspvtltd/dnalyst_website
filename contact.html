@@ -173,7 +173,6 @@
       text-decoration: none;
     }
     
-    /* Form Styling */
     .contact-form-card {
       background: var(--white);
       padding: 40px;
@@ -245,7 +244,6 @@
       color: var(--medium-text);
     }
     
-    /* Form Elements */
     .form-group {
       margin-bottom: 1.5rem;
     }
@@ -272,7 +270,6 @@
       background-size: 16px 12px;
     }
     
-    /* Dropdown Styling */
     .dropdown {
       position: relative;
       margin-bottom: 1.5rem;
@@ -360,7 +357,6 @@
       cursor: pointer;
     }
     
-    /* Button Styling */
     .submit-btn {
       background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       color: var(--white);
@@ -388,7 +384,6 @@
       margin-right: 10px;
     }
     
-    /* Terms Checkbox */
     .terms-check {
       display: flex;
       align-items: flex-start;
@@ -420,7 +415,6 @@
       color: var(--secondary-color);
     }
     
-    /* Coupon Code Field */
     .coupon-field {
       position: relative;
     }
@@ -441,7 +435,6 @@
       font-size: 1.2rem;
     }
     
-    /* Responsive Adjustments */
     @media (max-width: 992px) {
       .contact-section::before {
         width: 100%;
@@ -672,7 +665,15 @@
     </div>
   </section>
 
+  <!-- Add EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
+    // Initialize EmailJS with your Public Key (get from EmailJS dashboard)
+    (function() {
+      // Replace these with your actual EmailJS credentials
+      emailjs.init('MHuXywcK2nvKGX8KQ'); // Get this from EmailJS dashboard -> Account -> API Keys
+    })();
+
     // Get coupon code from URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const couponCode = urlParams.get('coupon');
@@ -680,38 +681,51 @@
       document.getElementById('couponCode').value = couponCode;
     }
     
-    // Form submission
+    // Form submission handler
     document.getElementById('contactForm').addEventListener('submit', function(event) {
       event.preventDefault();
       
-      const formData = {
-        firstName: document.querySelector('input[name="firstName"]').value,
-        lastName: document.querySelector('input[name="lastName"]').value,
+      // Validate at least one product is selected
+      const checkedProducts = document.querySelectorAll('input[name="products"]:checked');
+      if (checkedProducts.length === 0) {
+        alert('Please select at least one product.');
+        return false;
+      }
+
+      // Prepare email parameters
+      const templateParams = {
+        from_name: document.querySelector('input[name="firstName"]').value + ' ' + 
+                  document.querySelector('input[name="lastName"]').value,
+        from_email: document.querySelector('input[name="email"]').value,
         phone: document.querySelector('input[name="phone"]').value,
-        email: document.querySelector('input[name="email"]').value,
         location: document.querySelector('input[name="location"]').value,
         coupon_code: document.querySelector('input[name="coupon_code"]').value,
         age: document.querySelector('input[name="age"]').value,
         gender: document.querySelector('select[name="gender"]').value,
-        products: Array.from(document.querySelectorAll('input[name="products"]:checked'))
-                       .map(checkbox => checkbox.value),
-        offers: ['25% Discount for Early Birds', 'One Free Diet Counseling Session']
+        products: Array.from(checkedProducts).map(el => el.value).join(', '),
+        message: 'New form submission from dnalyst website',
+        terms: document.querySelector('input[name="terms"]').checked ? 'Agreed' : 'Not agreed'
       };
 
-      if (formData.products.length === 0) {
-        alert('Please select at least one product.');
-        return;
-      }
-
-      // Here you would typically send the form data to your server
-      console.log('Form submitted:', formData);
+      // Send email using EmailJS
+      emailjs.send('service_e6ax5mf', 'template_5ej6blf', templateParams)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          alert('Thank you! Our team will contact you shortly.');
+          
+          // Reset form but keep coupon code
+          event.target.reset();
+          if (couponCode) {
+            document.getElementById('couponCode').value = couponCode;
+          } else {
+            document.getElementById('couponCode').value = 'ROUNDTABLE11062025';
+          }
+        }, function(error) {
+          console.error('FAILED...', error);
+          alert('Submission failed. Please email us directly at wellness@molsys.in');
+        });
       
-      // Show success message
-      alert('Thank you for your interest! Our wellness team will contact you within 24 hours.');
-      
-      // Reset form
-      this.reset();
-      document.getElementById('couponCode').value = couponCode || 'ROUNDTABLE11062025';
+      return false;
     });
     
     // Dropdown functionality
