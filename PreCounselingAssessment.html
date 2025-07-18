@@ -561,40 +561,59 @@
         });
 
         // Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+       // Updated Form Submission
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-            const formData = {
-                firstName: document.querySelector('input[name="firstName"]').value,
-                lastName: document.querySelector('input[name="lastName"]').value,
-                phone: document.querySelector('input[name="phone"]').value,
-                email: document.querySelector('input[name="email"]').value,
-                location: document.querySelector('input[name="location"]').value,
-                coupon_code: document.querySelector('input[name="coupon_code"]').value,
-                howKnow: document.getElementById('howKnow').value,
-                hospitalName: document.querySelector('input[name="hospitalName"]')?.value || '',
-                doctorName: document.querySelector('input[name="doctorName"]')?.value || '',
-                dieticianName: document.querySelector('input[name="dieticianName"]')?.value || '',
-                otherSource: document.querySelector('input[name="otherSource"]')?.value || '',
-                age: document.querySelector('input[name="age"]').value,
-                gender: document.querySelector('select[name="gender"]').value,
-                products: Array.from(document.querySelectorAll('input[name="products"]:checked'))
-                    .map(checkbox => checkbox.value)
-            };
+    // Get all form data
+    const formData = {
+        firstName: document.querySelector('input[name="firstName"]').value.trim(),
+        lastName: document.querySelector('input[name="lastName"]').value.trim(),
+        phone: document.querySelector('input[name="phone"]').value.trim(),
+        email: document.querySelector('input[name="email"]').value.trim(),
+        location: document.querySelector('input[name="location"]').value.trim(),
+        coupon_code: document.querySelector('input[name="coupon_code"]').value.trim(),
+        age: document.querySelector('input[name="age"]').value.trim(),
+        gender: document.querySelector('select[name="gender"]').value,
+        howKnow: document.getElementById('howKnow').value,
+        // Only include reference fields if they're visible and have values
+        hospitalName: document.getElementById('hospitalField').style.display === 'block' 
+            ? document.querySelector('input[name="hospitalName"]').value.trim() : '',
+        doctorName: document.getElementById('doctorField').style.display === 'block' 
+            ? document.querySelector('input[name="doctorName"]').value.trim() : '',
+        dieticianName: document.getElementById('dieticianField').style.display === 'block' 
+            ? document.querySelector('input[name="dieticianName"]').value.trim() : '',
+        otherSource: document.getElementById('otherField').style.display === 'block' 
+            ? document.querySelector('input[name="otherSource"]').value.trim() : '',
+        products: Array.from(document.querySelectorAll('input[name="products"]:checked'))
+            .map(checkbox => checkbox.value).join(', ')
+    };
 
-            if (formData.products.length === 0) {
-                alert('Please select at least one product.');
-                return;
-            }
+    // Validation
+    if (formData.products.length === 0) {
+        alert('Please select at least one product.');
+        return;
+    }
+    
+    if (!formData.howKnow) {
+        alert('Please let us know how you learned about us.');
+        return;
+    }
 
-            emailjs.send('service_e6ax5mf', 'template_5ej6blf', formData)
-                .then(function (response) {
-                    alert('Form submitted successfully!');
-                    document.getElementById('contactForm').reset();
-                }, function (error) {
-                    alert('Failed to send form. Please try again.');
-                });
+    // Send email
+    emailjs.send('service_e6ax5mf', 'template_5ej6blf', formData)
+        .then(function(response) {
+            alert('Form submitted successfully!');
+            document.getElementById('contactForm').reset();
+            // Hide all reference fields after submit
+            document.querySelectorAll('.reference-field').forEach(field => {
+                field.style.display = 'none';
+            });
+        }, function(error) {
+            alert('Failed to send form. Please try again.');
+            console.error('EmailJS Error:', error);
         });
+});
 
         // Dropdown Functionality
         document.querySelector('.dropdown-toggle').addEventListener('click', function (e) {
