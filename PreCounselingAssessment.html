@@ -251,64 +251,7 @@
             accent-color: var(--primary-color);
         }
 
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .custom-heading h2 {
-                font-size: 2rem;
-            }
-
-            .custom-heading h2 span {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .custom-contact .row {
-                flex-direction: column-reverse;
-            }
-
-            .col-md-5,
-            .col-md-7 {
-                padding: 0;
-            }
-
-            .custom-content {
-                margin-top: 30px;
-            }
-
-            .dropdown-content {
-                position: relative;
-            }
-
-            .custom-heading h2 {
-                font-size: 1.8rem;
-            }
-
-            .custom-heading h2 span {
-                font-size: 1.3rem;
-            }
-
-            .custom-heading p {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-
-            #contactForm,
-            .custom-content {
-                padding: 25px;
-            }
-
-            .custom-heading h2 {
-                font-size: 1.6rem;
-            }
-
-            .custom-heading h2 span {
-                font-size: 1.2rem;
-            }
-        }
-
+        /* Reference Fields */
         .reference-field {
             display: none;
             margin-top: 10px;
@@ -337,6 +280,61 @@
             box-shadow: 0 0 0 0.2rem rgba(255, 145, 0, 0.15);
             outline: none;
         }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .custom-heading h2 {
+                font-size: 2rem;
+            }
+            
+            .custom-heading h2 span {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .custom-contact .row {
+                flex-direction: column-reverse;
+            }
+            
+            .col-md-5, .col-md-7 {
+                padding: 0;
+            }
+            
+            .custom-content {
+                margin-top: 30px;
+            }
+            
+            .dropdown-content {
+                position: relative;
+            }
+            
+            .custom-heading h2 {
+                font-size: 1.8rem;
+            }
+            
+            .custom-heading h2 span {
+                font-size: 1.3rem;
+            }
+            
+            .custom-heading p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            #contactForm, .custom-content {
+                padding: 25px;
+            }
+            
+            .custom-heading h2 {
+                font-size: 1.6rem;
+            }
+            
+            .custom-heading h2 span {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 
@@ -357,27 +355,24 @@
                         <h2>Welcome to Your Health Journey
                             <span>Let's Get Started with dnalyst</span>
                         </h2>
-                        <p>We're excited to help you unlock insights about your health. Please share some details below
-                            and our wellness team will reach out to guide you.</p>
+                        <p>We're excited to help you unlock insights about your health. Please share some details below and our wellness team will reach out to guide you.</p>
                     </div>
                 </div>
             </div>
-
+            
             <div class="row">
-                <!-- Form Column (will appear first on mobile) -->
+                <!-- Form Column -->
                 <div class="col-lg-7 order-lg-1 order-2">
                     <form id="contactForm">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="firstName" placeholder="First Name"
-                                    required>
+                                <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="lastName" placeholder="Last Name"
-                                    required>
+                                <input type="text" class="form-control" name="lastName" placeholder="Last Name" required>
                             </div>
                         </div>
-
+                        
                         <div class="form-row">
                             <div class="col-md-6">
                                 <input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
@@ -386,17 +381,16 @@
                                 <input type="email" class="form-control" name="email" placeholder="Email" required>
                             </div>
                         </div>
-
+                        
                         <div class="form-row">
                             <div class="col-md-12">
                                 <input type="text" class="form-control" name="location" placeholder="Location" required>
                             </div>
                         </div>
-
+                        
                         <div class="form-row">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="coupon_code"
-                                    placeholder="Coupon Code (Optional)">
+                                <input type="text" class="form-control" name="coupon_code" placeholder="Coupon Code (Optional)">
                             </div>
                         </div>
 
@@ -436,15 +430,14 @@
                             </div>
 
                             <div id="dieticianField" class="reference-field">
-                                <input type="text" class="form-control" name="dieticianName"
-                                    placeholder="Dietician's name">
+                                <input type="text" class="form-control" name="dieticianName" placeholder="Dietician's name">
                             </div>
 
                             <div id="otherField" class="reference-field">
                                 <input type="text" class="form-control" name="otherSource" placeholder="Please specify">
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
                             <label class="formdropdown">Select Interested Products:</label>
                             <div class="dropdown">
@@ -460,7 +453,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
                             <label class="terms">
                                 <input type="checkbox" id="termsCheckbox" name="terms" required>
@@ -471,8 +464,8 @@
                         <button class="btn1" type="submit">Submit</button>
                     </form>
                 </div>
-
-                <!-- Contact Details Column (will appear second on mobile) -->
+                
+                <!-- Contact Details Column -->
                 <div class="col-lg-5 order-lg-2 order-1">
                     <div class="custom-title">
                         <h3>Contact Details</h3>
@@ -486,7 +479,7 @@
                                 <span>080-69328714</span>
                             </div>
                         </div>
-
+                        
                         <div class="custom-info">
                             <i class="far fa-envelope"></i>
                             <div>
@@ -494,7 +487,7 @@
                                 <span>wellness@molsys.in</span>
                             </div>
                         </div>
-
+                        
                         <div class="custom-info">
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
@@ -533,20 +526,20 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
+  
     <script>
         // Initialize EmailJS
-        (function () {
+        (function(){
             emailjs.init("MHuXywcK2nvKGX8KQ");
         })();
 
         // How did you hear about us logic
-        document.getElementById('howKnow').addEventListener('change', function () {
+        document.getElementById('howKnow').addEventListener('change', function() {
             // Hide all reference fields first
             document.querySelectorAll('.reference-field').forEach(field => {
                 field.style.display = 'none';
             });
-
+            
             // Show the relevant field based on selection
             const value = this.value;
             if (value === 'hospital') {
@@ -561,68 +554,91 @@
         });
 
         // Form Submission
-       // Updated Form Submission
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    // Get all form data
-    const formData = {
-        firstName: document.querySelector('input[name="firstName"]').value.trim(),
-        lastName: document.querySelector('input[name="lastName"]').value.trim(),
-        phone: document.querySelector('input[name="phone"]').value.trim(),
-        email: document.querySelector('input[name="email"]').value.trim(),
-        location: document.querySelector('input[name="location"]').value.trim(),
-        coupon_code: document.querySelector('input[name="coupon_code"]').value.trim(),
-        age: document.querySelector('input[name="age"]').value.trim(),
-        gender: document.querySelector('select[name="gender"]').value,
-        howKnow: document.getElementById('howKnow').value,
-        // Only include reference fields if they're visible and have values
-        hospitalName: document.getElementById('hospitalField').style.display === 'block' 
-            ? document.querySelector('input[name="hospitalName"]').value.trim() : '',
-        doctorName: document.getElementById('doctorField').style.display === 'block' 
-            ? document.querySelector('input[name="doctorName"]').value.trim() : '',
-        dieticianName: document.getElementById('dieticianField').style.display === 'block' 
-            ? document.querySelector('input[name="dieticianName"]').value.trim() : '',
-        otherSource: document.getElementById('otherField').style.display === 'block' 
-            ? document.querySelector('input[name="otherSource"]').value.trim() : '',
-        products: Array.from(document.querySelectorAll('input[name="products"]:checked'))
-            .map(checkbox => checkbox.value).join(', ')
-    };
+            // Get howKnow text
+            const howKnowValue = document.getElementById('howKnow').value;
+            let howKnowText = '';
+            let referenceName = '';
 
-    // Validation
-    if (formData.products.length === 0) {
-        alert('Please select at least one product.');
-        return;
-    }
-    
-    if (!formData.howKnow) {
-        alert('Please let us know how you learned about us.');
-        return;
-    }
+            switch(howKnowValue) {
+                case 'hospital':
+                    howKnowText = 'Hospital reference';
+                    referenceName = document.querySelector('input[name="hospitalName"]').value.trim();
+                    break;
+                case 'doctor':
+                    howKnowText = 'Referred by doctor';
+                    referenceName = document.querySelector('input[name="doctorName"]').value.trim();
+                    break;
+                case 'dietician':
+                    howKnowText = 'Referred by dietician';
+                    referenceName = document.querySelector('input[name="dieticianName"]').value.trim();
+                    break;
+                case 'website':
+                    howKnowText = 'Website';
+                    break;
+                case 'instagram':
+                    howKnowText = 'Instagram';
+                    break;
+                case 'other':
+                    howKnowText = 'Other';
+                    referenceName = document.querySelector('input[name="otherSource"]').value.trim();
+                    break;
+                default:
+                    howKnowText = 'Not specified';
+            }
 
-    // Send email
-    emailjs.send('service_e6ax5mf', 'template_5ej6blf', formData)
-        .then(function(response) {
-            alert('Form submitted successfully!');
-            document.getElementById('contactForm').reset();
-            // Hide all reference fields after submit
-            document.querySelectorAll('.reference-field').forEach(field => {
-                field.style.display = 'none';
-            });
-        }, function(error) {
-            alert('Failed to send form. Please try again.');
-            console.error('EmailJS Error:', error);
+            // Prepare form data
+            const formData = {
+                firstName: document.querySelector('input[name="firstName"]').value.trim(),
+                lastName: document.querySelector('input[name="lastName"]').value.trim(),
+                phone: document.querySelector('input[name="phone"]').value.trim(),
+                email: document.querySelector('input[name="email"]').value.trim(),
+                location: document.querySelector('input[name="location"]').value.trim(),
+                coupon_code: document.querySelector('input[name="coupon_code"]').value.trim(),
+                age: document.querySelector('input[name="age"]').value.trim(),
+                gender: document.querySelector('select[name="gender"]').value,
+                howKnow: howKnowText,
+                referenceName: referenceName,
+                products: Array.from(document.querySelectorAll('input[name="products"]:checked'))
+                             .map(checkbox => checkbox.value).join(', ')
+            };
+
+            // Validation
+            if (formData.products.length === 0) {
+                alert('Please select at least one product.');
+                return;
+            }
+            
+            if (!formData.howKnow) {
+                alert('Please let us know how you learned about us.');
+                return;
+            }
+
+            // Send email
+            emailjs.send('service_e6ax5mf', 'template_5ej6blf', formData)
+                .then(function(response) {
+                    alert('Form submitted successfully!');
+                    document.getElementById('contactForm').reset();
+                    // Hide all reference fields after submit
+                    document.querySelectorAll('.reference-field').forEach(field => {
+                        field.style.display = 'none';
+                    });
+                }, function(error) {
+                    alert('Failed to send form. Please try again.');
+                    console.error('EmailJS Error:', error);
+                });
         });
-});
 
         // Dropdown Functionality
-        document.querySelector('.dropdown-toggle').addEventListener('click', function (e) {
+        document.querySelector('.dropdown-toggle').addEventListener('click', function(e) {
             e.preventDefault();
             document.getElementById('dropdownContent').classList.toggle('show');
         });
 
         // Close dropdown when clicking outside
-        window.addEventListener('click', function (e) {
+        window.addEventListener('click', function(e) {
             if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.dropdown-content')) {
                 const dropdowns = document.getElementsByClassName("dropdown-content");
                 for (let i = 0; i < dropdowns.length; i++) {
@@ -635,11 +651,10 @@ document.getElementById('contactForm').addEventListener('submit', function(event
 
         // Keep dropdown open when clicking checkboxes
         document.querySelectorAll('.dropdown-content input').forEach(checkbox => {
-            checkbox.addEventListener('click', function (e) {
+            checkbox.addEventListener('click', function(e) {
                 e.stopPropagation();
             });
         });
     </script>
 </body>
-
 </html>
