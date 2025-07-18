@@ -2,210 +2,409 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>dnalyst - Decode your Health</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dnalyst - Decode your Health</title>
 
-  <!-- 
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./favicon.svg"  type="image/svg+xml">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
 
-  <!-- 
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap"
+        rel="stylesheet">
 
-  <!-- 
-    - google font link
-  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap"
-    rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #ff9100;
+            --primary-hover: #e68a00;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+
+        .custom-contact {
+            padding: 60px 0;
+            background-color: var(--light-bg);
+        }
+
+        .custom-heading {
+            margin-bottom: 50px;
+        }
+
+        .custom-heading h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .custom-heading h2 span {
+            color: var(--primary-color);
+            display: block;
+            font-size: 1.8rem;
+            margin-top: 10px;
+        }
+
+        .custom-heading p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .custom-title h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .custom-title p {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        /* Form Styles */
+        #contactForm {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-control {
+            height: 50px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+            padding: 12px 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(255, 145, 0, 0.15);
+        }
+
+        select.form-control {
+            height: 50px;
+        }
+
+        /* Dropdown Styles */
         .dropdown {
-    position: relative;
-    display: inline-block;
-}
+            position: relative;
+            margin-bottom: 20px;
+        }
 
-.formdropdown {
-    font-size: 16px; /* Increased font size for better readability */
-    margin-bottom: 10px; /* Spacing between label and dropdown */
-}
+        .dropdown-toggle {
+            padding: 14px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.dropdown-toggle {
-    padding: 12px 20px; /* Padding for button */
-    background: #ff9100; /* Button background */
-    color: white; /* Button text color */
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px; /* Font size for button */
-    transition: background 0.3s; /* Smooth transition */
-}
+        .dropdown-toggle:after {
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            margin-left: 10px;
+        }
 
-.dropdown-toggle:hover {
-    background: #e68a00; /* Darker on hover */
-}
+        .dropdown-toggle:hover {
+            background: var(--primary-hover);
+        }
 
-.dropdown-content {
-    display: none; /* Hidden by default */
-    position: absolute;
-    background-color: white; /* Background color of dropdown */
-    min-width: 200px; /* Increased width */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    padding: 10px;
-    border-radius: 5px;
-}
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            width: 100%;
+            box-shadow: var(--box-shadow);
+            z-index: 10;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border: 1px solid #eee;
+        }
 
-.dropdown-content label {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Align items vertically centered */
-    margin-bottom: 8px; /* Space between items */
-    font-size: 18px; /* Font size for labels */
-    width: 100%; /* Make label take full width */
-}
+        .dropdown-content.show {
+            display: block;
+        }
 
-.dropdown-content input {
-    margin-right: 10px; /* Space between checkbox and label */
-    transform: scale(1.2); /* Make checkboxes a bit larger */
-    flex-shrink: 0; /* Prevent checkbox from shrinking */
-    width: 20px; /* Set a fixed width for the checkbox */
-}
+        .dropdown-content label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 0;
+        }
 
-/* Show the dropdown content when the button is clicked */
-.dropdown-content.show {
-    display: block; /* Show the dropdown */
-}
+        .dropdown-content input {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+        }
 
+        /* Contact Info Styles */
+        .custom-content {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            height: 100%;
+        }
+
+        .custom-info {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .custom-info i {
+            color: var(--primary-color);
+            font-size: 20px;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+
+        .custom-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .custom-info span,
+        .custom-info a {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
+            transition: var(--transition);
+        }
+
+        .custom-info a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* Button Styles */
+        .btn1 {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn1:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Terms Checkbox */
+        .terms {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .terms input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .custom-heading h2 {
+                font-size: 2rem;
+            }
+
+            .custom-heading h2 span {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .custom-contact .row {
+                flex-direction: column-reverse;
+            }
+
+            .col-md-5,
+            .col-md-7 {
+                padding: 0;
+            }
+
+            .custom-content {
+                margin-top: 30px;
+            }
+
+            .dropdown-content {
+                position: relative;
+            }
+
+            .custom-heading h2 {
+                font-size: 1.8rem;
+            }
+
+            .custom-heading h2 span {
+                font-size: 1.3rem;
+            }
+
+            .custom-heading p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+
+            #contactForm,
+            .custom-content {
+                padding: 25px;
+            }
+
+            .custom-heading h2 {
+                font-size: 1.6rem;
+            }
+
+            .custom-heading h2 span {
+                font-size: 1.2rem;
+            }
+        }
+
+        .reference-field {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .how-know-select {
+            margin-bottom: 20px;
+        }
+
+        .how-know-select select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            background-color: white;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+        }
+
+        .how-know-select select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(255, 145, 0, 0.15);
+            outline: none;
+        }
     </style>
-
-    
 </head>
 
-<body >
+<body>
+    <header class="header" data-header>
+        <div class="container">
+            <a href="./index.html" class="logo">
+                <img src="./assets/images/Dnalyst.png" alt="dnalyst Logo" class="logo-img">
+            </a>
+        </div>
+    </header>
 
-  <!-- 
-    - #HEADER
-  -->
-
-  <header class="header" data-header>
-    <div class="container">
-
-      <a href="./index.html" class="logo">
-        <img src="./assets/images/Dnalyst.png" alt="Lifestyle Logo" class="logo-img">
-    </a>
-    </div>
-    
-  </header>
-
-  
-
-
-
-    <div>
-    
     <section class="custom-contact" id="contact">
         <div class="container">
-            <!-- First Row: Centered Heading -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="custom-heading text-center">
-                        <h2>Thank You For Your Intrest 
-                            <span>Start Your Journey with dnalyst</span>
+                        <h2>Welcome to Your Health Journey
+                            <span>Let's Get Started with dnalyst</span>
                         </h2>
-                        <p>We appreciate your interest. Kindly fill out this form so that our sales team contact you.</p>
-
+                        <p>We're excited to help you unlock insights about your health. Please share some details below
+                            and our wellness team will reach out to guide you.</p>
                     </div>
                 </div>
             </div>
-            
-            <!-- Second Row: Contact Details and Form -->
+
             <div class="row">
-                <!-- First Column: Contact Details -->
-                <div class="col-md-5">
-                    <div class="custom-title">
-                        <h3>Contact Details</h3>
-                        <p>Feel free to contact us with the details below:</p>
-                    </div>
-                    <div class="custom-content">
-                        <!-- Info-1 -->
-                        <div class="custom-info">
-                            <i class="fas fa-mobile-alt"></i>
-                            <h4 class="d-inline-block">PHONE :
-                                <br>
-                                <span>080-69328714</span>
-                            </h4>
-                        </div>
-                        <!-- Info-2 -->
-                        <div class="custom-info">
-                            <i class="far fa-envelope"></i>
-                            <h4 class="d-inline-block">EMAIL :
-                                <br>
-                                <span>wellness@molsys.in</span>
-                            </h4>
-                        </div>
-                        <!-- Info-3 -->
-                        <div class="custom-info">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <h4 class="d-inline-block">ADDRESS :
-                                <br>
-                                <span>
-                                      Yenepoya Technology Incubator<br>
-                                      Yenepoya (deemed-to-be) University<br>
-                                      Deralakatte, Ullal, DK Pin: 575020<br>
-                                    </span>
-                            </h4>
+                <!-- Form Column (will appear first on mobile) -->
+                <div class="col-lg-7 order-lg-1 order-2">
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="firstName" placeholder="First Name"
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="lastName" placeholder="Last Name"
+                                    required>
+                            </div>
                         </div>
 
-                        <div class="custom-info" style="margin-bottom: 50px;">
-                            <i class="fab fa-youtube"></i>
-                            <h4 class="d-inline-block">
-                                <a href="https://youtube.com/@dnalyst?si=mD4EbzupidRQwyCD" target="_blank">
-                                    Subscribe to our YouTube channel
-                                </a>
-                            </h4>
-                        </div>
-                      
-                    </div>
-                </div>
-    
-                <!-- Second Column: Inquiry Form -->
-                <div class="col-md-7">
-                    <form id="contactForm">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="lastName" placeholder="Last Name" required>
-                            </div>
-                            <div class="col-sm-6">
+                        <div class="form-row">
+                            <div class="col-md-6">
                                 <input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-md-6">
                                 <input type="email" class="form-control" name="email" placeholder="Email" required>
                             </div>
-                            <div class="col-sm-12">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-12">
                                 <input type="text" class="form-control" name="location" placeholder="Location" required>
                             </div>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" name="coupon_code" placeholder="Coupon Code(Optinoal)" >
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="coupon_code"
+                                    placeholder="Coupon Code (Optional)">
                             </div>
                         </div>
-    
-                        <div class="row">
-                            <div class="col-sm-6">
+
+                        <div class="form-row">
+                            <div class="col-md-6">
                                 <input type="number" class="form-control" name="age" placeholder="Age" required>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-md-6">
                                 <select class="form-control" name="gender" required>
                                     <option value="" disabled selected>Gender</option>
                                     <option value="male">Male</option>
@@ -214,133 +413,214 @@
                                 </select>
                             </div>
                         </div>
-    
-                        <!-- Interested Products -->
+
+                        <div class="form-group how-know-select">
+                            <label for="howKnow">How did you learn about us?</label>
+                            <select class="form-control" id="howKnow" name="howKnow" required>
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="hospital">Hospital reference</option>
+                                <option value="doctor">Referred by doctor</option>
+                                <option value="dietician">Referred by dietician</option>
+                                <option value="website">Website</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="other">Other (please mention)</option>
+                            </select>
+
+                            <!-- Conditional fields -->
+                            <div id="hospitalField" class="reference-field">
+                                <input type="text" class="form-control" name="hospitalName" placeholder="Hospital name">
+                            </div>
+
+                            <div id="doctorField" class="reference-field">
+                                <input type="text" class="form-control" name="doctorName" placeholder="Doctor's name">
+                            </div>
+
+                            <div id="dieticianField" class="reference-field">
+                                <input type="text" class="form-control" name="dieticianName"
+                                    placeholder="Dietician's name">
+                            </div>
+
+                            <div id="otherField" class="reference-field">
+                                <input type="text" class="form-control" name="otherSource" placeholder="Please specify">
+                            </div>
+                        </div>
+
                         <div class="form-group">
-                            <label class="formdropdown" style="margin-bottom: 50px;" for="productsDropdown">Select Interested Products:</label>
+                            <label class="formdropdown">Select Interested Products:</label>
                             <div class="dropdown">
-                                <button class="dropdown-toggle" onclick="toggleDropdown()">Select Products</button>
+                                <button type="button" class="dropdown-toggle">Select Products</button>
                                 <div class="dropdown-content" id="dropdownContent">
-                                    <label><input type="checkbox" name="products" value="slimKr" onclick="keepDropdownOpen()"> slimKr</label>
-                                    <label><input type="checkbox" name="products" value="fitKr" onclick="keepDropdownOpen()"> fitKr</label>
-                                    <label><input type="checkbox" name="products" value="fitKrPro" onclick="keepDropdownOpen()"> fitKrPro</label>
-                                    <label><input type="checkbox" name="products" value="kinKr" onclick="keepDropdownOpen()"> kinKr</label>
-                                    <label><input type="checkbox" name="products" value="herKr" onclick="keepDropdownOpen()"> herKr</label>
-                                    <label><input type="checkbox" name="products" value="gutKr" onclick="keepDropdownOpen()"> gutKr</label>
-                                    <label><input type="checkbox" name="products" value="gutKrPro" onclick="keepDropdownOpen()"> gutKrPro</label>
+                                    <label><input type="checkbox" name="products" value="slimKr"> slimKr</label>
+                                    <label><input type="checkbox" name="products" value="fitKr"> fitKr</label>
+                                    <label><input type="checkbox" name="products" value="fitKrPro"> fitKrPro</label>
+                                    <label><input type="checkbox" name="products" value="kinKr"> kinKr</label>
+                                    <label><input type="checkbox" name="products" value="herKr"> herKr</label>
+                                    <label><input type="checkbox" name="products" value="gutKr"> gutKr</label>
+                                    <label><input type="checkbox" name="products" value="gutKrPro"> gutKrPro</label>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
-                            <label class="terms" for="termsCheckbox" style="display: inline-flex; align-items: center;">
-                                <input type="checkbox" id="termsCheckbox" name="terms" required style="margin-right: 5px;">
+                            <label class="terms">
+                                <input type="checkbox" id="termsCheckbox" name="terms" required>
                                 I agree that customer representatives can contact me with the details shared above.
                             </label>
                         </div>
 
-
-                        
-    
-                        <button class="btn1 btn-block" type="submit">Submit</button>
+                        <button class="btn1" type="submit">Submit</button>
                     </form>
+                </div>
+
+                <!-- Contact Details Column (will appear second on mobile) -->
+                <div class="col-lg-5 order-lg-2 order-1">
+                    <div class="custom-title">
+                        <h3>Contact Details</h3>
+                        <p>Feel free to contact us with the details below:</p>
+                    </div>
+                    <div class="custom-content">
+                        <div class="custom-info">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div>
+                                <h4>PHONE</h4>
+                                <span>080-69328714</span>
+                            </div>
+                        </div>
+
+                        <div class="custom-info">
+                            <i class="far fa-envelope"></i>
+                            <div>
+                                <h4>EMAIL</h4>
+                                <span>wellness@molsys.in</span>
+                            </div>
+                        </div>
+
+                        <div class="custom-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>ADDRESS</h4>
+                                <span>
+                                    Yenepoya Technology Incubator<br>
+                                    Yenepoya (deemed-to-be) University<br>
+                                    Deralakatte, Ullal, DK Pin: 575020
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="custom-info">
+                            <i class="fab fa-youtube"></i>
+                            <div>
+                                <h4>
+                                    <a href="https://youtube.com/@dnalyst?si=mD4EbzupidRQwyCD" target="_blank">
+                                        Subscribe to our YouTube channel
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    
-</div>
 
+    <!-- Back to Top Button -->
+    <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+        <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+    </a>
 
+    <!-- JavaScript -->
+    <script src="./assets/js/script.js" defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+    <script>
+        // Initialize EmailJS
+        (function () {
+            emailjs.init("MHuXywcK2nvKGX8KQ");
+        })();
 
-
-
-  <!-- 
-    - #BACK TO TOP
-  -->
-
-  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
-    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
-  </a>
-
-
-
-
-
-  <!-- 
-    - custom js link
-  -->
-  <script src="./assets/js/script.js" defer></script>
-
-  <!-- 
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
- 
-  
-  <script src="script.js"></script>
-
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script type="text/javascript">
-     (function(){
-        emailjs.init("MHuXywcK2nvKGX8KQ"); // Replace with your EmailJS Public Key
-     })();
-  </script>
-
-
-
-<script>
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevents the default form submission behavior
-
-        // Get form data
-        const formData = {
-            firstName: document.querySelector('input[name="firstName"]').value,
-            lastName: document.querySelector('input[name="lastName"]').value,
-            phone: document.querySelector('input[name="phone"]').value,
-            email: document.querySelector('input[name="email"]').value,
-            location: document.querySelector('input[name="location"]').value,
-            coupon_code: document.querySelector('input[name="coupon_code"]').value,
-            age: document.querySelector('input[name="age"]').value,
-            gender: document.querySelector('select[name="gender"]').value,
-            products: Array.from(document.querySelectorAll('input[name="products"]:checked'))
-                           .map(checkbox => checkbox.value)
-        };
-
-        // Check if at least one product is selected
-        if (formData.products.length === 0) {
-            alert('Please select at least one product.');
-            return; // Stop the form submission
-        }
-
-        // Send the email using EmailJS
-        emailjs.send('service_e6ax5mf', 'template_5ej6blf', formData)
-            .then(function(response) {
-                alert('Form submitted successfully!');
-                console.log('Success!', response.status, response.text);
-                document.getElementById('contactForm').reset();
-            }, function(error) {
-                alert('Failed to send form. Please try again.');
-                console.error('Failed', error);
+        // How did you hear about us logic
+        document.getElementById('howKnow').addEventListener('change', function () {
+            // Hide all reference fields first
+            document.querySelectorAll('.reference-field').forEach(field => {
+                field.style.display = 'none';
             });
-    });
-</script>
 
+            // Show the relevant field based on selection
+            const value = this.value;
+            if (value === 'hospital') {
+                document.getElementById('hospitalField').style.display = 'block';
+            } else if (value === 'doctor') {
+                document.getElementById('doctorField').style.display = 'block';
+            } else if (value === 'dietician') {
+                document.getElementById('dieticianField').style.display = 'block';
+            } else if (value === 'other') {
+                document.getElementById('otherField').style.display = 'block';
+            }
+        });
 
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
 
-  
+            const formData = {
+                firstName: document.querySelector('input[name="firstName"]').value,
+                lastName: document.querySelector('input[name="lastName"]').value,
+                phone: document.querySelector('input[name="phone"]').value,
+                email: document.querySelector('input[name="email"]').value,
+                location: document.querySelector('input[name="location"]').value,
+                coupon_code: document.querySelector('input[name="coupon_code"]').value,
+                howKnow: document.getElementById('howKnow').value,
+                hospitalName: document.querySelector('input[name="hospitalName"]')?.value || '',
+                doctorName: document.querySelector('input[name="doctorName"]')?.value || '',
+                dieticianName: document.querySelector('input[name="dieticianName"]')?.value || '',
+                otherSource: document.querySelector('input[name="otherSource"]')?.value || '',
+                age: document.querySelector('input[name="age"]').value,
+                gender: document.querySelector('select[name="gender"]').value,
+                products: Array.from(document.querySelectorAll('input[name="products"]:checked'))
+                    .map(checkbox => checkbox.value)
+            };
 
+            if (formData.products.length === 0) {
+                alert('Please select at least one product.');
+                return;
+            }
+
+            emailjs.send('service_e6ax5mf', 'template_5ej6blf', formData)
+                .then(function (response) {
+                    alert('Form submitted successfully!');
+                    document.getElementById('contactForm').reset();
+                }, function (error) {
+                    alert('Failed to send form. Please try again.');
+                });
+        });
+
+        // Dropdown Functionality
+        document.querySelector('.dropdown-toggle').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('dropdownContent').classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function (e) {
+            if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.dropdown-content')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    if (dropdowns[i].classList.contains('show')) {
+                        dropdowns[i].classList.remove('show');
+                    }
+                }
+            }
+        });
+
+        // Keep dropdown open when clicking checkboxes
+        document.querySelectorAll('.dropdown-content input').forEach(checkbox => {
+            checkbox.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
 </body>
-
-
-</div>
-<script>
-  document.querySelector('.close-btn').addEventListener('click', function() {
-    document.querySelector('.overlays').style.display = 'none';
-  });
-</script>
 
 </html>
