@@ -1,0 +1,26 @@
+{
+  "name": "dnalyst_website",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/molsyspvtltd/dnalyst_website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/molsyspvtltd/dnalyst_website/issues"
+  },
+  "homepage": "https://github.com/molsyspvtltd/dnalyst_website#readme",
+  "description": "",
+  "dependencies": {
+    "react-scripts": "^5.0.1"
+  }
+}

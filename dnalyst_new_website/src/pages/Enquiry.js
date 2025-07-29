@@ -1,251 +1,453 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
+import { FaMobileAlt, FaMapMarkerAlt, FaChevronUp, FaEnvelope, FaYoutube } from 'react-icons/fa';
+import './Enquiry.css';
 
 const EnquiryPage = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    email: "",
-    location: "",
-    coupon: "",
-    age: "",
-    gender: "",
-    products: [],
-    agree: false,
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+    location: '',
+    coupon_code: '',
+    age: '',
+    gender: '',
+    howKnow: '',
+    referenceName: '',
+    products: []
   });
 
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedHowKnow, setSelectedHowKnow] = useState('');
+  const [showReferenceField, setShowReferenceField] = useState({
+    hospital: false,
+    doctor: false,
+    dietician: false,
+    other: false
+  });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    if (type === "checkbox" && name === "products") {
-      setFormData((prev) => ({
-        ...prev,
-        products: checked
-          ? [...prev.products, value]
-          : prev.products.filter((item) => item !== value),
-      }));
-    } else if (type === "checkbox" && name === "agree") {
-      setFormData((prev) => ({ ...prev, agree: checked }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init("MHuXywcK2nvKGX8KQ");
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleHowKnowChange = (e) => {
+    const value = e.target.value;
+    setSelectedHowKnow(value);
+    setFormData(prev => ({
+      ...prev,
+      howKnow: value,
+      referenceName: ''
+    }));
+
+    // Reset all reference fields
+    setShowReferenceField({
+      hospital: false,
+      doctor: false,
+      dietician: false,
+      other: false
+    });
+
+    // Show the relevant field based on selection
+    if (value === 'hospital') {
+      setShowReferenceField(prev => ({ ...prev, hospital: true }));
+    } else if (value === 'doctor') {
+      setShowReferenceField(prev => ({ ...prev, doctor: true }));
+    } else if (value === 'dietician') {
+      setShowReferenceField(prev => ({ ...prev, dietician: true }));
+    } else if (value === 'other') {
+      setShowReferenceField(prev => ({ ...prev, other: true }));
     }
   };
 
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.firstName.trim())
-      newErrors.firstName = "First Name is required";
-    if (!formData.phone.trim()) newErrors.phone = "Phone Number is required";
-    if (!formData.email.trim()) newErrors.email = "Email is required";
-    if (!formData.gender.trim()) newErrors.gender = "Gender is required";
-    if (!formData.agree) newErrors.agree = "Please accept terms";
-    if (formData.products.length === 0)
-      newErrors.products = "Please select at least one product";
-    return newErrors;
+  const handleProductChange = (e) => {
+    const { value, checked } = e.target;
+    setFormData(prev => {
+      let products = [...prev.products];
+      if (checked) {
+        products.push(value);
+      } else {
+        products = products.filter(p => p !== value);
+      }
+      return { ...prev, products };
+    });
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+
+    // Validation
+    if (formData.products.length === 0) {
+      alert('Please select at least one product.');
       return;
     }
-    setErrors({});
-    setLoading(true);
 
-    // Simulate API submission
-    setTimeout(() => {
-      setLoading(false);
-      alert("Form submitted successfully!");
-      console.log("Form Data:", formData);
-      // Reset form
-      setFormData({
-        firstName: "",
-        lastName: "",
-        phone: "",
-        email: "",
-        location: "",
-        coupon: "",
-        age: "",
-        gender: "",
-        products: [],
-        agree: false,
+    if (!formData.howKnow) {
+      alert('Please let us know how you learned about us.');
+      return;
+    }
+
+    // Prepare howKnow text
+    let howKnowText = '';
+    switch (formData.howKnow) {
+      case 'hospital':
+        howKnowText = 'Hospital reference';
+        break;
+      case 'doctor':
+        howKnowText = 'Referred by doctor';
+        break;
+      case 'dietician':
+        howKnowText = 'Referred by dietician';
+        break;
+      case 'website':
+        howKnowText = 'Website';
+        break;
+      case 'instagram':
+        howKnowText = 'Instagram';
+        break;
+      case 'other':
+        howKnowText = 'Other';
+        break;
+      default:
+        howKnowText = 'Not specified';
+    }
+
+    const emailData = {
+      ...formData,
+      howKnow: howKnowText,
+      products: formData.products.join(', ')
+    };
+
+    // Send email
+    emailjs.send('service_e6ax5mf', 'template_5ej6blf', emailData)
+      .then(() => {
+        alert('Form submitted successfully!');
+        // Reset form
+        setFormData({
+          firstName: '',
+          lastName: '',
+          phone: '',
+          email: '',
+          location: '',
+          coupon_code: '',
+          age: '',
+          gender: '',
+          howKnow: '',
+          referenceName: '',
+          products: []
+        });
+        setSelectedHowKnow('');
+        setShowReferenceField({
+          hospital: false,
+          doctor: false,
+          dietician: false,
+          other: false
+        });
+      }, (error) => {
+        alert('Failed to send form. Please try again.');
+        console.error('EmailJS Error:', error);
       });
-    }, 1500);
   };
-
   return (
-    <div className="bg-[#f9f5f0] text-gray-800 flex justify-center py-12 px-12 sm:px-6 lg:px-8">
-      <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Left: Contact Details */}
-        <div className="bg-white p-8 rounded-2xl shadow-lg">
-          <h2 className="text-2xl font-bold text-orange-600 mb-6">
-            Contact Details
-          </h2>
-          <div className="space-y-4 text-gray-700 text-base">
-            <div>📞 080-69328714</div>
-            <div>✉️ wellness@molys.in</div>
-            <div>
-              📍 Yenepoya Technology Incubator, Deralakatte, Mangalore, 575020
-            </div>
-            <div>▶️ Subscribe to our YouTube</div>
+    <div className="enquiry-container">
+      <main className="enquiry-main">
+        <section className="enquiry-hero">
+          <div className="hero-content">
+            <h1>Welcome to Your Health Journey</h1>
+            <h2>Let's Get Started with dnalyst</h2>
+            <p className="hero-description">
+              We're excited to help you unlock insights about your health. Please share some details below
+              and our wellness team will reach out to guide you.
+            </p>
           </div>
-        </div>
+        </section>
 
-        {/* Right: Enquiry Form */}
-        <div className="bg-white p-8 rounded-2xl shadow-lg">
-          <h2 className="text-2xl font-bold text-orange-600 mb-6">
-            Enquiry Form
-          </h2>
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder={errors.firstName ? errors.firstName : "First Name"}
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                className={`input-style ${
-                  errors.firstName ? "border-red-500 placeholder-red-500" : ""
-                }`}
-              />
+        <div className="enquiry-content">
+          <div className="form-section">
+            <form className="enquiry-form" onSubmit={handleSubmit}>
+              <div className="form-grid">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
 
-              <input
-                type="text"
-                placeholder="Last Name"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="input-style"
-              />
+                <div className="form-group">
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
 
-              <input
-                type="text"
-                placeholder={errors.phone ? errors.phone : "Phone Number"}
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                className={`input-style ${
-                  errors.phone ? "border-red-500 placeholder-red-500" : ""
-                }`}
-              />
+                <div className="form-group">
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
 
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder={errors.email ? errors.email : "Email"}
-                className={`input-style ${
-                  errors.email ? "border-red-500 placeholder-red-500" : ""
-                }`}
-              />
+                <div className="form-group">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
 
-              <input
-                type="text"
-                placeholder="Location"
-                name="location"
-                value={formData.location}
-                onChange={handleChange}
-                className="input-style"
-              />
+                <div className="form-group full-width">
+                  <input
+                    type="text"
+                    name="location"
+                    placeholder="Location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
 
-              <input
-                type="text"
-                placeholder="Coupon Code (Optional)"
-                name="coupon"
-                value={formData.coupon}
-                onChange={handleChange}
-                className="input-style"
-              />
+                <div className="form-group full-width">
+                  <input
+                    type="text"
+                    name="coupon_code"
+                    placeholder="Coupon Code (Optional)"
+                    value={formData.coupon_code}
+                    onChange={handleInputChange}
+                  />
+                </div>
 
-              <input
-                type="number"
-                placeholder="Age"
-                name="age"
-                value={formData.age}
-                onChange={handleChange}
-                className="input-style"
-              />
+                <div className="form-group">
+                  <input
+                    type="number"
+                    name="age"
+                    placeholder="Age"
+                    value={formData.age}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
 
-              <select
-                name="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                className="input-style"
-              >
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-              {errors.gender && (
-                <span className="text-red-500 text-sm">{errors.gender}</span>
-              )}
-            </div>
+                <div className="form-group">
+                  <select
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value="" disabled>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
 
-            {/* Products */}
-            <div>
-              <label className="block font-semibold mb-2">
-                Interested Products
-              </label>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "slimKr",
-                  "fitKr",
-                  "fitKrPro",
-                  "kinKr",
-                  "herKr",
-                  "gutKr",
-                  "gutKrPro",
-                ].map((item) => (
-                  <label key={item} className="flex items-center gap-2">
+                <div className="form-group full-width">
+                  <label>How did you learn about us?</label>
+                  <select
+                    id="howKnow"
+                    name="howKnow"
+                    value={selectedHowKnow}
+                    onChange={handleHowKnowChange}
+                    required
+                  >
+                    <option value="" disabled>Select an option</option>
+                    <option value="hospital">Hospital reference</option>
+                    <option value="doctor">Referred by doctor</option>
+                    <option value="dietician">Referred by dietician</option>
+                    <option value="website">Website</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="other">Other (please mention)</option>
+                  </select>
+
+                  {/* Conditional fields */}
+                  {showReferenceField.hospital && (
+                    <div className="reference-field">
+                      <input
+                        type="text"
+                        name="referenceName"
+                        placeholder="Hospital name"
+                        value={formData.referenceName}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  )}
+
+                  {showReferenceField.doctor && (
+                    <div className="reference-field">
+                      <input
+                        type="text"
+                        name="referenceName"
+                        placeholder="Doctor's name"
+                        value={formData.referenceName}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  )}
+
+                  {showReferenceField.dietician && (
+                    <div className="reference-field">
+                      <input
+                        type="text"
+                        name="referenceName"
+                        placeholder="Dietician's name"
+                        value={formData.referenceName}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  )}
+
+                  {showReferenceField.other && (
+                    <div className="reference-field">
+                      <input
+                        type="text"
+                        name="referenceName"
+                        placeholder="Please specify"
+                        value={formData.referenceName}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  )}
+                </div>
+
+                <div className="form-group full-width products-group">
+                  <label>Select Interested Products:</label>
+                  <div className="products-dropdown">
+                    <button
+                      type="button"
+                      className="dropdown-toggle"
+                      onClick={toggleDropdown}
+                    >
+                      {formData.products.length > 0
+                        ? `${formData.products.length} product(s) selected`
+                        : 'Select Products'}
+                      <span className="dropdown-arrow">▼</span>
+                    </button>
+                    <div className={`dropdown-content ${dropdownOpen ? 'show' : ''}`}>
+                      {['slimKr', 'fitKr', 'fitKrPro', 'kinKr', 'herKr', 'gutKr', 'gutKrPro'].map(product => (
+                        <label key={product}>
+                          <input
+                            type="checkbox"
+                            name="products"
+                            value={product}
+                            checked={formData.products.includes(product)}
+                            onChange={handleProductChange}
+                          />
+                          {product}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="form-group full-width terms-group">
+                  <label className="terms-label">
                     <input
                       type="checkbox"
-                      name="products"
-                      value={item}
-                      checked={formData.products.includes(item)}
-                      onChange={handleChange}
+                      id="termsCheckbox"
+                      name="terms"
+                      required
                     />
-                    {item}
+                    <span>I agree that customer representatives can contact me with the details shared above.</span>
                   </label>
-                ))}
+                </div>
               </div>
-              {errors.products && (
-                <span className="text-red-500 text-sm">{errors.products}</span>
-              )}
-            </div>
 
-            {/* Agreement */}
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="agree"
-                checked={formData.agree}
-                onChange={handleChange}
-              />
-              <p className="text-sm text-gray-600">
-                I agree that customer representatives can contact me.
-              </p>
-            </div>
-            {errors.agree && (
-              <span className="text-red-500 text-sm">{errors.agree}</span>
-            )}
+              <button type="submit" className="submit-button">
+                Submit Request
+                <span className="button-icon">→</span>
+              </button>
+            </form>
+          </div>
 
-            {/* Submit */}
-            <button
-              type="submit"
-              className="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 rounded-xl transition duration-300 font-semibold"
-              disabled={loading}
-            >
-              {loading ? "Submitting..." : "Submit"}
-            </button>
-          </form>
+          <div className="contact-section">
+            <div className="contact-card">
+              <h3>Contact Details</h3>
+              <p className="contact-intro">Feel free to contact us with the details below:</p>
+
+              <div className="contact-info">
+                <div className="contact-item">
+                  <div className="contact-icon">
+                    <FaMobileAlt />
+                  </div>
+                  <div className="contact-text">
+                    <h4>PHONE</h4>
+                    <p>080-69328714</p>
+                  </div>
+                </div>
+
+                <div className="contact-item">
+                  <div className="contact-icon">
+                    <FaEnvelope />
+                  </div>
+                  <div className="contact-text">
+                    <h4>EMAIL</h4>
+                    <p>wellness@molsys.in</p>
+                  </div>
+                </div>
+
+                <div className="contact-item">
+                  <div className="contact-icon">
+                    <FaMapMarkerAlt />
+                  </div>
+                  <div className="contact-text">
+                    <h4>ADDRESS</h4>
+                    <p>
+                      Yenepoya Technology Incubator<br />
+                      Yenepoya (deemed-to-be) University<br />
+                      Deralakatte, Ullal, DK Pin: 575020
+                    </p>
+                  </div>
+                </div>
+
+                <div className="contact-item">
+                  <div className="contact-icon">
+                    <FaYoutube />
+                  </div>
+                  <div className="contact-text">
+                    <h4>
+                      <a href="https://youtube.com/@dnalyst?si=mD4EbzupidRQwyCD" target="_blank" rel="noopener noreferrer">
+                        Subscribe to our YouTube channel
+                      </a>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
+
+      <a href="#top" className="back-to-top" aria-label="Back to top">
+        <FaChevronUp />
+      </a>
     </div>
   );
 };
