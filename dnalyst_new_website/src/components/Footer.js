@@ -68,6 +68,14 @@ export default function Footer() {
                 Enquiry Form
               </a>
             </li>
+            <li>
+              <a
+                href="/careers"
+                className="hover:text-[#CC5500] transition-colors"
+              >
+                Careers
+              </a>
+            </li>
           </ul>
         </div>
 

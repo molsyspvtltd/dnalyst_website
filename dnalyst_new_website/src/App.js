@@ -10,6 +10,7 @@ import Enquiry from './pages/Enquiry';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Customer from './pages/Customer';
+import Careers from './pages/Careers';
 // import Shipping from './pages/Shipping';
 // import Track from './pages/Track';
 // import Faq from './pages/Faq';
@@ -39,6 +40,7 @@ function App() {
             <Route path="/enquiry" element={<Enquiry />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/careers" element={<Careers />} />
             <Route path="/customer" element={<Customer />} />
             {/* <Route path="/faq" element={<Faq />} />
           <Route path="/shipping" element={<Shipping />} />
