@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import logo from '../assets/images/dnalyst-nobg.png';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import logo from "../assets/images/dnalyst-nobg.png";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,12 +12,12 @@ export default function Header() {
     { name: "About", path: "/about" },
     { name: "Products", path: "/products" },
     { name: "Contact", path: "/contact" },
-    { name: "Enquiry", path: "/enquiry" },
+    { name: "Enquiry", path: "/enquiry" }
   ];
 
   const linkClass = (isActive) =>
     `relative text-sm uppercase font-semibold transition-colors ${
-      isActive ? 'text-burnt' : 'text-gray-700'
+      isActive ? "text-burnt" : "text-gray-700"
     } hover:text-burnt`;
 
   return (
@@ -69,7 +69,7 @@ export default function Header() {
                 <NavLink
                   key={name}
                   to={path}
-                  className={({ isActive }) => linkClass(isActive) + ' block'}
+                  className={({ isActive }) => linkClass(isActive) + " block"}
                   onClick={() => setIsOpen(false)}
                 >
                   <span className="relative group">
